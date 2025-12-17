@@ -1,0 +1,5 @@
+{
+  "name": "FotoCall CRM",
+  "description": "Smart contact management system that digitizes phone numbers from images using AI and organizes them for call tracking.",
+  "requestFramePermissions": []
+}
