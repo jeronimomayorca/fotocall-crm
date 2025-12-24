@@ -32,6 +32,9 @@ export const Login: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+        <div className="flex justify-center mb-8">
+          <img src="/logo.webp" alt="FotoCall CRM" className="h-20 w-auto object-contain" />
+        </div>
         <h2 className="text-2xl font-bold text-slate-900 text-center mb-6">Welcome Back</h2>
         
         {error && (

@@ -131,14 +131,7 @@ export const Dashboard: React.FC = () => {
       <nav className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
-            <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl shadow-lg shadow-blue-500/20">
-                <Phone className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
-                FotoCall CRM
-              </span>
-            </div>
+              <img src="/logo.webp" alt="FotoCall CRM" className="h-10 w-auto object-contain" />
             
             <div className="flex items-center space-x-4">
               <button 
