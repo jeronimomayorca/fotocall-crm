@@ -55,8 +55,24 @@ export const Dashboard: React.FC = () => {
   const handleContactsAdded = async (newContacts: Contact[]) => {
     if (!user) return;
 
+    // Filter duplicates against existing contacts in state
+    const existingPhones = new Set(contacts.map(c => c.phone.replace(/\D/g, '')));
+    const uniqueNewContacts = newContacts.filter(c => {
+      const cleanPhone = c.phone.replace(/\D/g, '');
+      return !existingPhones.has(cleanPhone);
+    });
+
+    const skippedCount = newContacts.length - uniqueNewContacts.length;
+
+    if (uniqueNewContacts.length === 0) {
+      if (skippedCount > 0) {
+        alert(`${skippedCount} contacts were skipped because they already exist in your CRM.`);
+      }
+      return;
+    }
+
     // Prepare data for Supabase (convert to snake_case if needed)
-    const contactsToInsert = newContacts.map(c => ({
+    const contactsToInsert = uniqueNewContacts.map(c => ({
       user_id: user.id,
       name: c.name,
       phone: c.phone,
@@ -70,6 +86,10 @@ export const Dashboard: React.FC = () => {
       const { error } = await supabase.from('contacts').insert(contactsToInsert);
       if (error) throw error;
       
+      if (skippedCount > 0) {
+        alert(`Finished. ${uniqueNewContacts.length} new contacts added. ${skippedCount} duplicates were skipped.`);
+      }
+
       // Refresh local state
       fetchContacts();
       setActiveTab('list');
